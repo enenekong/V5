@@ -1,7 +1,12 @@
 #include"data.h"
 
-extern float Ball_x = 0.0;
-extern float Ball_y = 0.0;
+
+extern float Ball_x = 0.0f;
+
+extern float Ball_y = 0.0f;
+
+
+
 
 const float Diss(const float x1, const float y1, const float x2, const float y2)noexcept
 {
@@ -41,15 +46,29 @@ const float Angle(const float x1, const float y1, const float x2, const float y2
 }
 
 
-void updateInformation(const Simuro::Field& field)
+
+void UpdateInformation(const Simuro::Field& field)
 {
 
     //更新球的坐标X及Y
     //Update the coordinate information X and Y of the sphere
     Ball_x = field.ball.position.x;
-    Ball_x = field.ball.position.x;
+    Ball_y = field.ball.position.y;
 
+
+ 
 
 }
+
+
+
+/* 数据测试单：
+    1 球的坐标 OK
+    2 简化调用目标点 OK
+    3 MoveTo跑位测试有效 OK
+
+*/
+
+
 
 

@@ -2,11 +2,27 @@
 #include"platform.h"
 #include<cmath>
 
-const float PI = 3.1415926f;
+
+const float PI = 3.1415926f;//
 
 
-static  int a = 10;
+//赋值机器人轮速所用
+//每次使用时需要初始化，否则默认为0
+//Means :  Assign the robot's wheel speed
+//Note  :  Each time you use this variable, you need to assign a value, otherwise the default is 0 
+static struct tagROBOT_WHEEL_S {
+	float left = 0.0f;
+	float right = 0.0f;
+}ROBOT_WHEEL_S[5];
 
+//所需要到达的目标点
+//每次使用时需要初始化，否则默认为0
+//Means :  Target point that needs to be reached
+//Note	:  Each time you use this variable, you need to assign a value, otherwise the default is 0 
+static struct tagSELFR_TO {
+	float x = 0.0f;
+	float y = 0.0f;
+}MY_R_TO[5];
 
 //功能      ： 返回 两个点 之间的向量转角 [0, 360] 逆时针
 //Function	:  Returns the angle vector between the robot and a point
@@ -31,6 +47,6 @@ const float Diss(const Simuro::Robot& robot, const float x2, const float y2)noex
 ///Function	: update information
 //Note		: information not being updated will result in unpredictable errors 
 //		      During execution, you must logically takes precedence 
-void updateInformation(const Simuro::Field& field);
+void UpdateInformation(const Simuro::Field& field);
 
 

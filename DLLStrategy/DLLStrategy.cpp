@@ -4,18 +4,12 @@
 #include "stdafx.h"
 #include "platform.h"
 #include "adapter.h"
-
 #include"robotMovement.h"
 #include"data.h"
 #include"bottom.h"
 
+
 #include<iostream>
-#include "xstring"
-#include<string>
-#include<typeinfo>
-#include<sstream>
-#include<locale>
-#include<vector>
 
 using namespace Simuro;
 using namespace Adapter;
@@ -24,6 +18,8 @@ using namespace std;
 
 extern float Ball_x;
 extern float Ball_y;
+
+
 
 //处于何种定位球状态，0是开球，其他遵从JudgeType
 int race_state = -1;//In which set-piece state it is, 0 is the kick-off, and the others obey JudgeType
@@ -268,17 +264,13 @@ void GetInstruction(Field *field)
 
 	//务必更新数据
 	//Be sure to update the data 
-	updateInformation(*field);
+	UpdateInformation(*field);
 
 
-
-	/*if (Ball_x < 0.f)
-		throw 1;*/
 
 	//策略运行的地方
-	//Where the policy code runs
-	trry(*field); 
-
+	//Policy Execution 
+	StartMain(*field);
 
 
 	//文件流读取，方便调试

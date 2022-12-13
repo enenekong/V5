@@ -1,6 +1,6 @@
 #include"robotMovement.h"
-
-
+#include "bottom.h"
+#include"data.h"
 
 
 void Go1(Simuro::Robot& robot, const float x, const float y)
@@ -49,6 +49,10 @@ void Go1(Simuro::Robot& robot, const float x, const float y)
         vv = -vv;
         vc = -vc;
     }
-    angle_need <= 0.F ? Run(&robot, vv - vc, vv) : Run(&robot, vv, vv - vc);
+    angle_need <= 0.F ? Run(robot, vv - vc, vv) : Run(robot, vv, vv - vc);
 }
+
+
+
+
 
