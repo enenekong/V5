@@ -25,7 +25,7 @@ void MoveTo(size_t n, Simuro::Field& field)
 void StartMain(Simuro::Field& field)
 {
    
-    GetOPPR_POS(field);
+    GetOPPR_POS(field); 
     trry(field);
    
 
