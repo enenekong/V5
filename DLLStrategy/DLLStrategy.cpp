@@ -21,6 +21,12 @@ extern float Ball_y;
 
 
 
+int race_state = -1;//处于何种定位球状态，0是开球，其他遵从JudgeType
+int race_state_trigger = -1;//哪一方触发了定位球
+
+
+//打印比赛状态
+=========
 //处于何种定位球状态，0是开球，其他遵从JudgeType
 int race_state = -1;//In which set-piece state it is, 0 is the kick-off, and the others obey JudgeType
 
@@ -263,14 +269,14 @@ void GetInstruction(Field *field)
     SendLog(L"V/DLLStrategy:GetInstruction()");
 
 	//务必更新数据
-	//Be sure to update the data 
-	UpdateInformation(*field);
-
-
-
-	//策略运行的地方
 	//Policy Execution 
 	StartMain(*field);
+
+	//策略运行的地方
+	//Where the policy code runs
+>>>>>>>>> Temporary merge branch 2
+	trry(*field); 
+
 
 
 	//文件流读取，方便调试
