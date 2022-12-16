@@ -1,5 +1,5 @@
 #include"data.h"
-
+#include<fstream>
 
 extern float Ball_x = 0.0f;
 
@@ -60,6 +60,62 @@ void UpdateInformation(const Simuro::Field& field)
 
 }
 
+
+void ShowData_TXT(const Simuro::Field& field)
+{
+
+
+    std::fstream file;
+    
+    //create a Txt field named ShowData_TXT,if tick >= 2
+    if (field.tick < 3) {
+        file.open("./ShowData_TXT.txt", std::fstream::out);
+        file << "——————-———创建成功-—————————" << std::endl;
+        file << "——————-——FIRA比赛数据——————-——" << std::endl << "\n";
+    }
+    else
+        file.open("./ShowData_TXT.txt", std::fstream::app);
+
+
+    //Determine whether the file is created successfully 
+    //If successful, continue the file 
+    if (file.is_open()) {
+        file.setf(std::ios::fixed);
+        file.setf(std::ios::showpoint);
+        size_t countR = 0;
+
+        file << "——————-———当前第" << field.tick << "周期——————-———\n" << std::endl;
+        for (const auto &n : field.selfRobots) {
+            file << "√ 我方" << countR << "号机器人的信息" << std::endl;
+            file << "( " << n.position.x << ", " << n.position.y << ")\t"
+                << "rotation:" << n.rotation << "\n" << std::endl;
+            file << "left_peed:" << n.wheel.leftSpeed << "\t" 
+                << "right_peed:" << n.wheel.rightSpeed << std::endl;
+            countR++;
+        }
+
+        countR = 0;
+        for (const auto& n : field.opponentRobots) {
+            file << "\n× 敌方" << countR << "号机器人的信息" << std::endl;
+            file << "( " << n.position.x << ", " << n.position.y << ")\t"
+                << "rotation:" << n.rotation << "\n" << std::endl;
+            file << "left_peed:" << n.wheel.leftSpeed << "\t"
+                << "right_peed:" << n.wheel.rightSpeed << std::endl;
+            countR++;
+        }
+
+        file << "——————-———周期 "<< field.tick <<"结束——————————\n" << std::endl;
+
+
+
+
+
+        file.close();  //关闭文件流
+    }
+
+
+
+}
 
 
 /* 数据测试单：

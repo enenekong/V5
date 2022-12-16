@@ -24,8 +24,10 @@ void MoveTo(size_t n, Simuro::Field& field)
 
 void StartMain(Simuro::Field& field)
 {
-   
+   //update the data ofopponent robot 
     GetOPPR_POS(field); 
+
+    
     trry(field);
    
 
@@ -43,9 +45,9 @@ void trry(Simuro::Field& field)
     //MY_R_TO[1].y = -12.f;
     //MoveTo(1, field);
 
-    //Go1(field.selfRobots[1], Ball_x, Ball_y);
+    Go1(field.selfRobots[1], Ball_x, Ball_y);
 
-    //Go1(field.selfRobots[3], OPPR_POS[0].x, OPPR_POS[0].y);
+    Go1(field.selfRobots[3], OPPR_POS[0].x, OPPR_POS[0].y);
 
 
 

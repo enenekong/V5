@@ -280,7 +280,7 @@ void GetInstruction(Field *field)
 	//注意：比赛前一定要注释掉
 	//File stream reading for easy debugging
 	//Note : Be sure to comment out before the game
-
+	ShowData_TXT(*field);
 
 }
 

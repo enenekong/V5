@@ -49,4 +49,6 @@ const float Diss(const Simuro::Robot& robot, const float x2, const float y2)noex
 //		      During execution, you must logically takes precedence 
 void UpdateInformation(const Simuro::Field& field);
 
+void ShowData_TXT(const Simuro::Field& field);
+
 
