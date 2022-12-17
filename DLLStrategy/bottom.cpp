@@ -91,7 +91,7 @@ float PredictWill_by(const Simuro::Field& field, unsigned int Expect_the_cycle)
         cy = cy + cy_i;
     }
     cy = cy / 3.0f;
-    const float will_by = field.ball.position.x + cy * Expect_the_cycle;
+    const float will_by = field.ball.position.y + cy * Expect_the_cycle;
     return will_by;
 }
 
@@ -121,9 +121,6 @@ void StartMain(Simuro::Field& field)
 
     //所有策略调用
     //Run Code
-
-
-
 
 
 
@@ -164,9 +161,9 @@ void LASTBALL_TEXT(const Simuro::Field& field)
     if (file.is_open()) {
         file.setf(std::ios::fixed);
         file.setf(std::ios::showpoint);
-        size_t countR = 0;
+        size_t countR = 0;    
         file << "周期" << field.tick << std::endl;
-        for (const auto& n : LASTBALL) {
+        for (const auto &n : LASTBALL) {
             file << "LASTBALL\t" << countR << "\t(" << n.x << ","
                 << n.y << ")\n" << std::endl;
             countR++;
@@ -183,19 +180,23 @@ void LASTBALL_TEXT(const Simuro::Field& field)
 void trry(Simuro::Field& field)
 {
 
-    //MY_R_TO[2].x = -72.f;
-    //MY_R_TO[2].y = -72.f;
-    //MoveTo(2, field);
-
-    //MY_R_TO[1].x = -12.f;
-    //MY_R_TO[1].y = -12.f;
-    //MoveTo(1, field);
+    /*MY_R_TO[2].x = -72.f;
+    MY_R_TO[2].y = -72.f;
+    MoveTo(2, field);*/
+    
+    MY_R_TO[1].x = -10002.f;
+    MY_R_TO[1].y = -12.f;
+    MoveTo(1, field);
+    
+  
 
     Go1(field.selfRobots[1], Ball_x, Ball_y);
 
-    Go1(field.selfRobots[3], OPPR_POS[0].x, OPPR_POS[0].y);
+    //Go1(field.selfRobots[1], Will_Ball_x, Will_Ball_y);
 
+    //Go1(field.selfRobots[3], OPPR_POS[0].x, OPPR_POS[0].y);
 
+    //Go1(field.selfRobots[1], OPPR_POS[0].x, OPPR_POS[0].y);
 
 }
 
