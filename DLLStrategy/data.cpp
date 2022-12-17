@@ -1,4 +1,4 @@
-#include"data.h"
+ï»¿#include"data.h"
 #include<fstream>
 
 extern float Ball_x = 0.0f;
@@ -26,7 +26,7 @@ const float Angle(const Simuro::Robot &robot, float x, float y)
 const float Angle(const float x1, const float y1, const float x2, const float y2) noexcept
 {
     float angle = 0.F, L = Diss(x1, y1, x2, y2);
-    if (L == 0.F) { L = 0.001F; }  //·ÀÖ¹·ÖÄ¸Îª 0
+    if (L == 0.F) { L = 0.001F; }  //é˜²æ­¢åˆ†æ¯ä¸º 0
     if ((y2 - y1) / L > 1.F) { angle = 90.F; }
     else if ((y2 - y1) / L < -1.F) {
         angle = -90.F;
@@ -35,7 +35,7 @@ const float Angle(const float x1, const float y1, const float x2, const float y2
         angle = asin((y2 - y1) / L) * 180.F / PI;
     }
 
-    if (y1 <= y2 && x2 <= x1) { angle = 180.F - angle; }  //º¬ÌØÊâÇé¿ö£ºy1 = y2
+    if (y1 <= y2 && x2 <= x1) { angle = 180.F - angle; }  //å«ç‰¹æ®Šæƒ…å†µï¼šy1 = y2
     else if (y2 < y1) {
         if (x2 < x1) { angle = 180.F - angle; }
         else if (x1 < x2) {
@@ -50,10 +50,11 @@ const float Angle(const float x1, const float y1, const float x2, const float y2
 void UpdateInformation(const Simuro::Field& field)
 {
 
-    //¸üÐÂÇòµÄ×ø±êX¼°Y
+    //æ›´æ–°çƒçš„åæ ‡XåŠY
     //Update the coordinate information X and Y of the sphere
     Ball_x = field.ball.position.x;
     Ball_y = field.ball.position.y;
+
 
 
  
@@ -70,8 +71,8 @@ void ShowData_TXT(const Simuro::Field& field)
     //create a Txt field named ShowData_TXT,if tick >= 2
     if (field.tick < 3) {
         file.open("./ShowData_TXT.txt", std::fstream::out);
-        file << "¡ª¡ª¡ª¡ª¡ª¡ª-¡ª¡ª¡ª´´½¨³É¹¦-¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª" << std::endl;
-        file << "¡ª¡ª¡ª¡ª¡ª¡ª-¡ª¡ªFIRA±ÈÈüÊý¾Ý¡ª¡ª¡ª¡ª¡ª¡ª-¡ª¡ª" << std::endl << "\n";
+        file << "â€”â€”â€”â€”â€”â€”-â€”â€”â€”åˆ›å»ºæˆåŠŸ-â€”â€”â€”â€”â€”â€”â€”â€”â€”" << std::endl;
+        file << "â€”â€”â€”â€”â€”â€”-â€”â€”FIRAæ¯”èµ›æ•°æ®â€”â€”â€”â€”â€”â€”-â€”â€”" << std::endl << "\n";
     }
     else
         file.open("./ShowData_TXT.txt", std::fstream::app);
@@ -84,33 +85,37 @@ void ShowData_TXT(const Simuro::Field& field)
         file.setf(std::ios::showpoint);
         size_t countR = 0;
 
-        file << "¡ª¡ª¡ª¡ª¡ª¡ª-¡ª¡ª¡ªµ±Ç°µÚ" << field.tick << "ÖÜÆÚ¡ª¡ª¡ª¡ª¡ª¡ª-¡ª¡ª¡ª\n" << std::endl;
+        file << "â€”â€”â€”â€”â€”â€”-â€”â€”â€”å½“å‰ç¬¬" << field.tick << "å‘¨æœŸâ€”â€”â€”â€”â€”â€”-â€”â€”â€”\n" << std::endl;
+        
+        file << "B çƒçš„ä½ç½®ä¿¡æ¯\t" << "(" << field.ball.position.x
+            << " , " << field.ball.position.y << ")\n" << std::endl;
+           
         for (const auto &n : field.selfRobots) {
-            file << "¡Ì ÎÒ·½" << countR << "ºÅ»úÆ÷ÈËµÄÐÅÏ¢" << std::endl;
+            file << "âˆš æˆ‘æ–¹" << countR << "å·æœºå™¨äººçš„ä¿¡æ¯" << std::endl;
             file << "( " << n.position.x << ", " << n.position.y << ")\t"
                 << "rotation:" << n.rotation << "\n" << std::endl;
-            file << "left_peed:" << n.wheel.leftSpeed << "\t" 
-                << "right_peed:" << n.wheel.rightSpeed << std::endl;
+            file << "left_peed:" << n.wheel.leftSpeed 
+                << "\tright_peed:" << n.wheel.rightSpeed << std::endl;
             countR++;
         }
 
         countR = 0;
         for (const auto& n : field.opponentRobots) {
-            file << "\n¡Á µÐ·½" << countR << "ºÅ»úÆ÷ÈËµÄÐÅÏ¢" << std::endl;
+            file << "\nÃ— æ•Œæ–¹" << countR << "å·æœºå™¨äººçš„ä¿¡æ¯" << std::endl;
             file << "( " << n.position.x << ", " << n.position.y << ")\t"
                 << "rotation:" << n.rotation << "\n" << std::endl;
-            file << "left_peed:" << n.wheel.leftSpeed << "\t"
-                << "right_peed:" << n.wheel.rightSpeed << std::endl;
+            file << "left_peed:" << n.wheel.leftSpeed 
+                << "\tright_peed:" << n.wheel.rightSpeed << std::endl;
             countR++;
         }
 
-        file << "¡ª¡ª¡ª¡ª¡ª¡ª-¡ª¡ª¡ªÖÜÆÚ "<< field.tick <<"½áÊø¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª¡ª\n" << std::endl;
+        file << "â€”â€”â€”â€”â€”â€”-â€”â€”â€”å‘¨æœŸ "<< field.tick <<"ç»“æŸâ€”â€”â€”â€”â€”â€”â€”â€”â€”â€”\n" << std::endl;
 
 
 
 
 
-        file.close();  //¹Ø±ÕÎÄ¼þÁ÷
+        file.close();  //å…³é—­æ–‡ä»¶æµ
     }
 
 
@@ -118,10 +123,10 @@ void ShowData_TXT(const Simuro::Field& field)
 }
 
 
-/* Êý¾Ý²âÊÔµ¥£º
-    1 ÇòµÄ×ø±ê OK
-    2 ¼ò»¯µ÷ÓÃÄ¿±êµã OK
-    3 MoveToÅÜÎ»²âÊÔÓÐÐ§ OK
+/* æ•°æ®æµ‹è¯•å•ï¼š
+    1 çƒçš„åæ ‡ OK
+    2 ç®€åŒ–è°ƒç”¨ç›®æ ‡ç‚¹ OK
+    3 MoveToè·‘ä½æµ‹è¯•æœ‰æ•ˆ OK
 
 */
 

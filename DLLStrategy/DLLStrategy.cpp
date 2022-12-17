@@ -281,6 +281,8 @@ void GetInstruction(Field *field)
 	//File stream reading for easy debugging
 	//Note : Be sure to comment out before the game
 	ShowData_TXT(*field);
+	
+
 
 }
 

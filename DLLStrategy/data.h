@@ -5,6 +5,8 @@
 
 const float PI = 3.1415926f;//
 
+extern float Will_Ball_x;
+extern float Will_Ball_y;
 
 //赋值机器人轮速所用
 //每次使用时需要初始化，否则默认为0
@@ -49,6 +51,8 @@ const float Diss(const Simuro::Robot& robot, const float x2, const float y2)noex
 //		      During execution, you must logically takes precedence 
 void UpdateInformation(const Simuro::Field& field);
 
+
+//Function  : Record match data 
 void ShowData_TXT(const Simuro::Field& field);
 
 
